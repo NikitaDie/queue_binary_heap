@@ -1,8 +1,9 @@
 #include <iostream>
+#include "./templates.cpp"
+//#include "../headers/node.h"
+//#include "../headers/queue.h"
 
-
-
-template <class T>
+/*template <class T>
 class Node
 {
 private:
@@ -20,7 +21,7 @@ public:
         return this->priority; 
     }
 
-    T getValue() const 
+    const T& getValue() const 
     { 
         return this->value; 
     }
@@ -41,61 +42,55 @@ private:
     int count;
     int capacity{ 8 };
 
-    const int getParentPriority(int index) const
-    {
-        return this->arr[(index - 1) / 2]->getPriority();
-    }
-
     const int getParentIndex(int index) const
     {
         return (index - 1) / 2;
     }
 
-    const Node<T>* getParent(int index) const
+    const int getParentPriority(int index) const
     {
-        return this->arr[(index - 1) / 2];
+        return this->arr[getParentIndex(index)]->getPriority();
     }
 
-    const int getLeftChildPriority(int index) const //?
+    const int getLeftChildIndex(int index) const
     {
         int tmp_index{ 2 * index + 1 };
         if(tmp_index > this->count)
-            return 0;
+            return -3;// ?
 
-        return this->arr[2 * index + 1]->getPriority();
+        return tmp_index;
     }
 
-    const int getRightChildPriority(int index) const //?
+    const int getRightChildIndex(int index) const
     {
         int tmp_index{ 2 * index + 2 };
         if(tmp_index > this->count)
-            return 0;
+            return -3;// ?
 
-        return this->arr[2 * index + 2]->getPriority();
+        return tmp_index;
     }
 
-    const int getLargerChildPriority(int index) const
+    const int getLeftChildPriority(int index) const 
     {
-        if(getRightChildPriority(index) > getLeftChildPriority(index))
-            return getRightChildPriority(index);
-        
-        return getLeftChildPriority(index);
+        return this->arr[getLeftChildIndex(index)]->getPriority();
+    }
+
+    const int getRightChildPriority(int index) const
+    {
+        return this->arr[getRightChildIndex(index)]->getPriority();
     }
 
     const int getLargerChildIndex(int index) const
     {
         if(getRightChildPriority(index) > getLeftChildPriority(index))
-            return 2 * index + 2;
+            return getRightChildIndex(index);
         
-        return 2 * index + 1;
+        return getLeftChildIndex(index);
     }
 
-    const Node<T>* getLargerChild(int index) const
+    const int getLargerChildPriority(int index) const
     {
-        if(getRightChildPriority() > getLeftChildPriority())
-            return this->arr[getRightChildPriority()];
-        
-        return this->arr[getLeftChildPriority()];
+        return this->arr[getLargerChildIndex(index)]->getPriority();
     }
 
     void swap(int index1, int index2)
@@ -165,7 +160,6 @@ public:
         }
     }
 
-    //T pop(){}
 
     //const T& front
 
@@ -178,7 +172,7 @@ public:
 
     //empty()     
 
-};
+};*/
 
 enum Priority
 {
@@ -190,7 +184,7 @@ enum Priority
 
 int main() {
 
-    Queue<int> q;
+    Queue<int, 8> q;
     q.push(new Node<int>{10, Priority::LOW});
     q.show();
     std::cout << std::endl;
@@ -219,8 +213,6 @@ int main() {
     {
         std::cout << q.pop() << std::endl;
     }
-
-    std::cout << 1/2;
 
     return 0;
 };
