@@ -60,6 +60,36 @@ void Queue<T, step>::swap(int index1, int index2)
 }
 
 template <class T, int step>
+void Queue<T, step>::relocateMemory()
+{
+    if (this->arr == nullptr)
+    {
+        this->arr = new Node<T>*[step];
+        this->capacity = step;
+
+        return;
+    }
+
+    this->capacity *= 2;
+
+    Node<T>** temp = new Node<T>*[this->capacity];
+
+    for (int i{}; i < this->count; ++i)
+    {
+        temp[i] = new Node<T>{ *this->arr[i] };
+    }
+
+    for (int i{}; i < this->count; ++i)
+    {
+        delete this->arr[i];
+    }
+
+    delete [] this->arr;
+
+    this->arr = temp;
+}
+
+template <class T, int step>
 void Queue<T, step>::clearMemory()
 {
     if (this->arr == nullptr)
@@ -81,7 +111,7 @@ template <class T, int step>
 Queue<T, step>::Queue() :
     arr{ new Node<T>*[step]},
     count{ 0 },
-    capacity{ 0 }
+    capacity{ step }
 {}
 
 template <class T, int step>
@@ -146,8 +176,8 @@ Queue<T, step>& Queue<T, step>::operator=(Queue&& obj)
 template <class T, int step>
 void Queue<T, step>::push(Node<T>* value)
 {
-    /*if (this->count + 1 == capacity) 
-        relocateMemory();*/
+    if (this->count + 1 == capacity) 
+        relocateMemory();
 
     if (count == 0)
     {
@@ -179,7 +209,7 @@ Node<T> Queue<T, step>::pop()
     int i{ 0 };
     this->count--;
 
-    while (i < this->count - 1) // ?
+    while (i < this->count - 1)
     {
         if (arr[i]->getPriority() < this->getLargerChildPriority(i))
         {

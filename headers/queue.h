@@ -27,6 +27,8 @@ private:
 
     void swap(int index1, int index2);
 
+    void relocateMemory();
+
     void clearMemory();
 
 public:

@@ -12,7 +12,7 @@ enum Priority
 
 int main() {
 
-    /*Queue<int, 8> q;
+    Queue<int, 8> q;
     q.push(new Node<int>{10, Priority::LOW});
     q.show();
     std::cout << std::endl;
@@ -35,18 +35,24 @@ int main() {
 
     q.push(new Node<int>{60, Priority::HIGH});
     q.show();
+
+    for( int i{}; i < 100; ++i)
+    {
+        q.push(new Node<int>{10, Priority::NORMAL});
+    }
+
     std::cout << std::endl;
     std::cout << std::endl;
     while( q.size() > 0 )
     {
         std::cout << q.pop() << std::endl;
-    }*/
+    }
 
-    Queue<int*, 8> w;
+    /*Queue<int*, 8> w;
 
 
     w.push(new Node<int*>{new int{10}, Priority::LOW});
-    w.show();
+    w.show();*/
 
     return 0;
 };
