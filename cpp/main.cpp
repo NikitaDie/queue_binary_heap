@@ -10,10 +10,9 @@ enum Priority
     HIGH = 2,
 };
 
-
 int main() {
 
-    Queue<int, 8> q;
+    /*Queue<int, 8> q;
     q.push(new Node<int>{10, Priority::LOW});
     q.show();
     std::cout << std::endl;
@@ -41,7 +40,13 @@ int main() {
     while( q.size() > 0 )
     {
         std::cout << q.pop() << std::endl;
-    }
+    }*/
+
+    Queue<int*, 8> w;
+
+
+    w.push(new Node<int*>{new int{10}, Priority::LOW});
+    w.show();
 
     return 0;
 };

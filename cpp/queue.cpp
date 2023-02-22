@@ -146,6 +146,9 @@ Queue<T, step>& Queue<T, step>::operator=(Queue&& obj)
 template <class T, int step>
 void Queue<T, step>::push(Node<T>* value)
 {
+    /*if (this->count + 1 == capacity) 
+        relocateMemory();*/
+
     if (count == 0)
     {
         arr[count++] = value;
