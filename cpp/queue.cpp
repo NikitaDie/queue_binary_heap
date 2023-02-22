@@ -60,7 +60,7 @@ void Queue<T, step>::swap(int index1, int index2)
 }
 
 template <class T, int step>
-void Queue<T, step>::relocateMemory()
+void Queue<T, step>::reallocateMemory()
 {
     if (this->arr == nullptr)
     {
@@ -177,7 +177,7 @@ template <class T, int step>
 void Queue<T, step>::push(Node<T>* value)
 {
     if (this->count + 1 == capacity) 
-        relocateMemory();
+        reallocateMemory();
 
     if (count == 0)
     {
